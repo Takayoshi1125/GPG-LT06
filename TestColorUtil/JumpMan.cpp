@@ -114,6 +114,8 @@ void JumpMan::DrawJump(void)
 
 		pos = mAfterImagePos[i];
 
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 100);
+
 		DrawRotaGraph(
 			pos.x, pos.y,
 			2.0f, mRot / 2,

@@ -278,7 +278,7 @@ void TestScene::DrawTest01(int no)
 
 		// ここからコーディングしていこう
 		//------------------------------------------
-
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA,alpha);
 		//------------------------------------------
 
 		int x = (boxSize * i);
@@ -304,9 +304,21 @@ void TestScene::DrawTest02(int no)
 
 	float t = mStep / sec;
 	
+	float S=255.0f;
+	float E=0.0f;
+	float C=S;
+
 	// ここからコーディングしていこう
 	//------------------------------------------
+	C=Utility::Lerp(S, E, t);
+	if (t  >= 1.0f)
+	{
+		C =E;
+		return;
+	}
 	
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, C);
+
 	//------------------------------------------
 
 	// 敵キャラクターの描画
@@ -352,6 +364,8 @@ void TestScene::DrawTest04(int no)
 		mSmokesVecL[i].Draw();
 	}
 
+
+	SetDrawBlendMode(DX_BLENDMODE_ADD, 255);
 	// 右側
 	size = mSmokesVecR.size();
 	for (int i = 0; i < size; i++)
@@ -421,7 +435,7 @@ void TestScene::DrawTest06(int no)
 
 	// ここからコーディングしていこう
 	//------------------------------------------
-
+	SetDrawBlendMode(DX_BLENDMODE_MUL, 0);
 
 	//DX_BLENDMODE_NOBLEND      描画後の色 =  Src * 1.0 + Dest * 0.0
 	//DX_BLENDMODE_ALPHA        描画後の色 =  Src * SrcAlpha + Dest * InvSrcAlpha
@@ -438,6 +452,7 @@ void TestScene::DrawTest06(int no)
 	//InvDestColor : 描画先のＲＧＢ値を反転(1.0 - Dest)したもの(RGB各要素単位)
 	//------------------------------------------
 
+	
 	// 円を描画
 	mSphere->Draw();
 

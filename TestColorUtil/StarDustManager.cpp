@@ -44,6 +44,7 @@ void StarDustManager::Draw(Sphere* sphere)
 
 		if (sphere->InRange(mStarDusts[i]->GetPos()))
 		{
+			SetDrawBlendMode(DX_BLENDMODE_ADD, 255);
 			mStarDusts[i]->Draw();
 		}
 		else
